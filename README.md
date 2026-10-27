@@ -60,7 +60,7 @@ reports/             דוחות ביקורת שנוצרו בהרצה
 py -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-set OPENAI_API_KEY=המפתח-שלך
+set OPENAI_API_KEY=sk-proj-...
 ```
 
 ב-macOS וב-Linux: `source venv/bin/activate` ו-`export OPENAI_API_KEY=...`. המפתח נשמר במשתנה סביבה ולא בקוד.
