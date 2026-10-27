@@ -1,0 +1,11 @@
+{
+  "organization": "תיכון אופק",
+  "people": [
+    {"id": "P01", "name": "רונית כהן", "role": "מנהלת בית הספר", "email": "ronit@ofek-school.example"},
+    {"id": "P02", "name": "דוד לוי", "role": "סגן מנהל - חינוך", "email": "david@ofek-school.example"},
+    {"id": "P03", "name": "מיכל אברמוב", "role": "מנהלת אדמיניסטרטיבית", "email": "michal@ofek-school.example"},
+    {"id": "P04", "name": "יוסי פרידמן", "role": "מזכיר כספים", "email": "yossi@ofek-school.example"},
+    {"id": "P05", "name": "שרה גולן", "role": "רכזת בטיחות וביטחון", "email": "sara@ofek-school.example"},
+    {"id": "P06", "name": "אורי שמעוני", "role": "רכז מערכות מידע", "email": "uri@ofek-school.example"}
+  ]
+}

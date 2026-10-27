@@ -1,0 +1,106 @@
+{
+  "note": "מדיניות החתימות של בית הספר. לכל תנאי נוסף יש טקסט קריא ('if') וגם הגדרה מובנית (field/op/value) שהקוד משתמש בה כדי לבדוק את התנאי בעצמו.",
+  "rules": [
+    {
+      "form_type": "יציאה לטיול או סיור",
+      "required_roles": [
+        "סגן מנהל - חינוך",
+        "רכזת בטיחות וביטחון"
+      ],
+      "extra_conditions": [
+        {
+          "if": "העלות הכוללת מעל 5,000 ₪",
+          "also_requires": "מזכיר כספים",
+          "field": "amount",
+          "op": ">",
+          "value": 5000
+        },
+        {
+          "if": "הטיול כולל לינה",
+          "also_requires": "מנהלת בית הספר",
+          "field": "overnight",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "notify_after_signed": [
+        "מנהלת אדמיניסטרטיבית"
+      ],
+      "keywords": [
+        "טיול",
+        "סיור"
+      ]
+    },
+    {
+      "form_type": "רכישת ציוד",
+      "required_roles": [
+        "מזכיר כספים"
+      ],
+      "extra_conditions": [
+        {
+          "if": "הסכום מעל 10,000 ₪",
+          "also_requires": "מנהלת בית הספר",
+          "field": "amount",
+          "op": ">",
+          "value": 10000
+        },
+        {
+          "if": "הציוד הוא מחשבים או ציוד תקשורת",
+          "also_requires": "רכז מערכות מידע",
+          "field": "equipment_category",
+          "op": "==",
+          "value": "computers_or_communication"
+        }
+      ],
+      "notify_after_signed": [
+        "מנהלת אדמיניסטרטיבית"
+      ],
+      "keywords": [
+        "רכש",
+        "רכישה",
+        "ציוד"
+      ]
+    },
+    {
+      "form_type": "החזר הוצאות",
+      "required_roles": [
+        "מזכיר כספים"
+      ],
+      "extra_conditions": [
+        {
+          "if": "הסכום מעל 1,000 ₪",
+          "also_requires": "מנהלת אדמיניסטרטיבית",
+          "field": "amount",
+          "op": ">",
+          "value": 1000
+        }
+      ],
+      "notify_after_signed": [],
+      "keywords": [
+        "החזר"
+      ]
+    },
+    {
+      "form_type": "בקשת חופשה או היעדרות של איש צוות",
+      "required_roles": [
+        "סגן מנהל - חינוך"
+      ],
+      "extra_conditions": [
+        {
+          "if": "ההיעדרות מעל 5 ימים רצופים",
+          "also_requires": "מנהלת בית הספר",
+          "field": "absence_days",
+          "op": ">",
+          "value": 5
+        }
+      ],
+      "notify_after_signed": [
+        "מנהלת אדמיניסטרטיבית"
+      ],
+      "keywords": [
+        "חופשה",
+        "היעדרות"
+      ]
+    }
+  ]
+}

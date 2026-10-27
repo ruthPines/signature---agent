@@ -1,0 +1,219 @@
+{
+  "form_id": "005",
+  "started_at": "2026-10-27 14:53:55",
+  "finished_at": "2026-10-27 14:54:04",
+  "outcome": {
+    "status": "escalated",
+    "verified": null,
+    "summary": "הטופס מספר 005 חסר במדיניות החתימות, ולא ניתן לקבוע את החותמים הנדרשים.",
+    "warnings": null,
+    "steps": 4
+  },
+  "signatures": {},
+  "notifications": [
+    {
+      "time": "2026-10-27 14:54:02",
+      "form_id": "005",
+      "recipient_id": "P03",
+      "recipient_name": "מיכל אברמוב",
+      "message": "הטופס מספר 005 (בקשה להשכרת אולם הספורט לגוף חיצוני) חסר במדיניות החתימות. לא הצלחתי לקבוע מי החותמים הנדרשים."
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "time": "14:53:57",
+      "by": "agent",
+      "tool": "read_form",
+      "args": {
+        "form_id": "005"
+      },
+      "reason": "reading the form to understand its details",
+      "result": {
+        "form_id": "005",
+        "content": "טופס מספר: 005\nשם הטופס: בקשה להשכרת אולם הספורט לגוף חיצוני\nמגיש: עמותת \"ספורט לכולם\"\nתאריך: 16/11/2026\n\nפרטים:\nשימוש באולם הספורט בימי שלישי בערב\nמשך: שנה שלמה\nתשלום מוצע: 500 ₪ לחודש\n"
+      }
+    },
+    {
+      "step": 2,
+      "time": "14:53:59",
+      "by": "agent",
+      "tool": "get_approval_rules",
+      "args": {},
+      "reason": "retrieving the school's approval policies to identify signatory requirements for this form type",
+      "result": {
+        "rules": [
+          {
+            "form_type": "יציאה לטיול או סיור",
+            "required_roles": [
+              "סגן מנהל - חינוך",
+              "רכזת בטיחות וביטחון"
+            ],
+            "extra_conditions": [
+              {
+                "if": "העלות הכוללת מעל 5,000 ₪",
+                "also_requires": "מזכיר כספים",
+                "field": "amount",
+                "op": ">",
+                "value": 5000
+              },
+              {
+                "if": "הטיול כולל לינה",
+                "also_requires": "מנהלת בית הספר",
+                "field": "overnight",
+                "op": "==",
+                "value": true
+              }
+            ],
+            "notify_after_signed": [
+              "מנהלת אדמיניסטרטיבית"
+            ],
+            "keywords": [
+              "טיול",
+              "סיור"
+            ]
+          },
+          {
+            "form_type": "רכישת ציוד",
+            "required_roles": [
+              "מזכיר כספים"
+            ],
+            "extra_conditions": [
+              {
+                "if": "הסכום מעל 10,000 ₪",
+                "also_requires": "מנהלת בית הספר",
+                "field": "amount",
+                "op": ">",
+                "value": 10000
+              },
+              {
+                "if": "הציוד הוא מחשבים או ציוד תקשורת",
+                "also_requires": "רכז מערכות מידע",
+                "field": "equipment_category",
+                "op": "==",
+                "value": "computers_or_communication"
+              }
+            ],
+            "notify_after_signed": [
+              "מנהלת אדמיניסטרטיבית"
+            ],
+            "keywords": [
+              "רכש",
+              "רכישה",
+              "ציוד"
+            ]
+          },
+          {
+            "form_type": "החזר הוצאות",
+            "required_roles": [
+              "מזכיר כספים"
+            ],
+            "extra_conditions": [
+              {
+                "if": "הסכום מעל 1,000 ₪",
+                "also_requires": "מנהלת אדמיניסטרטיבית",
+                "field": "amount",
+                "op": ">",
+                "value": 1000
+              }
+            ],
+            "notify_after_signed": [],
+            "keywords": [
+              "החזר"
+            ]
+          },
+          {
+            "form_type": "בקשת חופשה או היעדרות של איש צוות",
+            "required_roles": [
+              "סגן מנהל - חינוך"
+            ],
+            "extra_conditions": [
+              {
+                "if": "ההיעדרות מעל 5 ימים רצופים",
+                "also_requires": "מנהלת בית הספר",
+                "field": "absence_days",
+                "op": ">",
+                "value": 5
+              }
+            ],
+            "notify_after_signed": [
+              "מנהלת אדמיניסטרטיבית"
+            ],
+            "keywords": [
+              "חופשה",
+              "היעדרות"
+            ]
+          }
+        ],
+        "people": [
+          {
+            "id": "P01",
+            "name": "רונית כהן",
+            "role": "מנהלת בית הספר",
+            "email": "ronit@ofek-school.example"
+          },
+          {
+            "id": "P02",
+            "name": "דוד לוי",
+            "role": "סגן מנהל - חינוך",
+            "email": "david@ofek-school.example"
+          },
+          {
+            "id": "P03",
+            "name": "מיכל אברמוב",
+            "role": "מנהלת אדמיניסטרטיבית",
+            "email": "michal@ofek-school.example"
+          },
+          {
+            "id": "P04",
+            "name": "יוסי פרידמן",
+            "role": "מזכיר כספים",
+            "email": "yossi@ofek-school.example"
+          },
+          {
+            "id": "P05",
+            "name": "שרה גולן",
+            "role": "רכזת בטיחות וביטחון",
+            "email": "sara@ofek-school.example"
+          },
+          {
+            "id": "P06",
+            "name": "אורי שמעוני",
+            "role": "רכז מערכות מידע",
+            "email": "uri@ofek-school.example"
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "time": "14:54:02",
+      "by": "agent",
+      "tool": "send_notification",
+      "args": {
+        "recipient_id": "P03",
+        "message": "הטופס מספר 005 (בקשה להשכרת אולם הספורט לגוף חיצוני) חסר במדיניות החתימות. לא הצלחתי לקבוע מי החותמים הנדרשים.",
+        "form_id": "005"
+      },
+      "reason": "notifying the administrative manager about the missing approval policy for the form",
+      "result": {
+        "ok": true,
+        "message": "הודעה נשלחה ל-מיכל אברמוב"
+      }
+    },
+    {
+      "step": 4,
+      "time": "14:54:04",
+      "by": "agent",
+      "tool": "finish",
+      "args": {
+        "status": "escalated",
+        "summary": "הטופס מספר 005 חסר במדיניות החתימות, ולא ניתן לקבוע את החותמים הנדרשים."
+      },
+      "reason": "אין מדיניות חתימה מתאימה עבור הטופס",
+      "result": {
+        "accepted": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "form_id": "004",
+  "started_at": "2026-10-27 14:53:48",
+  "finished_at": "2026-10-27 14:53:55",
+  "outcome": {
+    "status": "escalated",
+    "verified": null,
+    "summary": "הטופס 004 חסר פרטים חשובים, שלחתי הודעה למנהלת האדמיניסטרטיבית.",
+    "warnings": null,
+    "steps": 4
+  },
+  "signatures": {},
+  "notifications": [
+    {
+      "time": "2026-10-27 14:53:53",
+      "form_id": "004",
+      "recipient_id": "P03",
+      "recipient_name": "מיכל אברמוב",
+      "message": "הטופס מספר 004 חסר פרטים חשובים כגון שם המגיש ותאריך החתימה. בבקשה עזרי לי בהמשך הטיפול בזה."
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "time": "14:53:49",
+      "by": "agent",
+      "tool": "read_form",
+      "args": {
+        "form_id": "004"
+      },
+      "reason": "למידע על סוג הטופס ופרטיו לפני פעולה.",
+      "result": {
+        "form_id": "004",
+        "content": "טופס מספר: 004\nשם הטופס: (לא מולא)\nמגיש: לא צוין\nתאריך: --\n\nפרטים:\nצריך אישור לדבר הזה בדחיפות, תדאגו לזה.\n"
+      }
+    },
+    {
+      "step": 2,
+      "time": "14:53:50",
+      "by": "agent",
+      "tool": "get_approval_rules",
+      "args": {},
+      "reason": "לברר את מדיניות החתימות לבית הספר כדי להבין כיצד לטפל בטופס.",
+      "result": {
+        "rules": [
+          {
+            "form_type": "יציאה לטיול או סיור",
+            "required_roles": [
+              "סגן מנהל - חינוך",
+              "רכזת בטיחות וביטחון"
+            ],
+            "extra_conditions": [
+              {
+                "if": "העלות הכוללת מעל 5,000 ₪",
+                "also_requires": "מזכיר כספים",
+                "field": "amount",
+                "op": ">",
+                "value": 5000
+              },
+              {
+                "if": "הטיול כולל לינה",
+                "also_requires": "מנהלת בית הספר",
+                "field": "overnight",
+                "op": "==",
+                "value": true
+              }
+            ],
+            "notify_after_signed": [
+              "מנהלת אדמיניסטרטיבית"
+            ],
+            "keywords": [
+              "טיול",
+              "סיור"
+            ]
+          },
+          {
+            "form_type": "רכישת ציוד",
+            "required_roles": [
+              "מזכיר כספים"
+            ],
+            "extra_conditions": [
+              {
+                "if": "הסכום מעל 10,000 ₪",
+                "also_requires": "מנהלת בית הספר",
+                "field": "amount",
+                "op": ">",
+                "value": 10000
+              },
+              {
+                "if": "הציוד הוא מחשבים או ציוד תקשורת",
+                "also_requires": "רכז מערכות מידע",
+                "field": "equipment_category",
+                "op": "==",
+                "value": "computers_or_communication"
+              }
+            ],
+            "notify_after_signed": [
+              "מנהלת אדמיניסטרטיבית"
+            ],
+            "keywords": [
+              "רכש",
+              "רכישה",
+              "ציוד"
+            ]
+          },
+          {
+            "form_type": "החזר הוצאות",
+            "required_roles": [
+              "מזכיר כספים"
+            ],
+            "extra_conditions": [
+              {
+                "if": "הסכום מעל 1,000 ₪",
+                "also_requires": "מנהלת אדמיניסטרטיבית",
+                "field": "amount",
+                "op": ">",
+                "value": 1000
+              }
+            ],
+            "notify_after_signed": [],
+            "keywords": [
+              "החזר"
+            ]
+          },
+          {
+            "form_type": "בקשת חופשה או היעדרות של איש צוות",
+            "required_roles": [
+              "סגן מנהל - חינוך"
+            ],
+            "extra_conditions": [
+              {
+                "if": "ההיעדרות מעל 5 ימים רצופים",
+                "also_requires": "מנהלת בית הספר",
+                "field": "absence_days",
+                "op": ">",
+                "value": 5
+              }
+            ],
+            "notify_after_signed": [
+              "מנהלת אדמיניסטרטיבית"
+            ],
+            "keywords": [
+              "חופשה",
+              "היעדרות"
+            ]
+          }
+        ],
+        "people": [
+          {
+            "id": "P01",
+            "name": "רונית כהן",
+            "role": "מנהלת בית הספר",
+            "email": "ronit@ofek-school.example"
+          },
+          {
+            "id": "P02",
+            "name": "דוד לוי",
+            "role": "סגן מנהל - חינוך",
+            "email": "david@ofek-school.example"
+          },
+          {
+            "id": "P03",
+            "name": "מיכל אברמוב",
+            "role": "מנהלת אדמיניסטרטיבית",
+            "email": "michal@ofek-school.example"
+          },
+          {
+            "id": "P04",
+            "name": "יוסי פרידמן",
+            "role": "מזכיר כספים",
+            "email": "yossi@ofek-school.example"
+          },
+          {
+            "id": "P05",
+            "name": "שרה גולן",
+            "role": "רכזת בטיחות וביטחון",
+            "email": "sara@ofek-school.example"
+          },
+          {
+            "id": "P06",
+            "name": "אורי שמעוני",
+            "role": "רכז מערכות מידע",
+            "email": "uri@ofek-school.example"
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "time": "14:53:53",
+      "by": "agent",
+      "tool": "send_notification",
+      "args": {
+        "recipient_id": "P03",
+        "message": "הטופס מספר 004 חסר פרטים חשובים כגון שם המגיש ותאריך החתימה. בבקשה עזרי לי בהמשך הטיפול בזה.",
+        "form_id": "004"
+      },
+      "reason": "שליחת הודעה על בעיה בטופס.",
+      "result": {
+        "ok": true,
+        "message": "הודעה נשלחה ל-מיכל אברמוב"
+      }
+    },
+    {
+      "step": 4,
+      "time": "14:53:55",
+      "by": "agent",
+      "tool": "finish",
+      "args": {
+        "status": "escalated",
+        "summary": "הטופס 004 חסר פרטים חשובים, שלחתי הודעה למנהלת האדמיניסטרטיבית."
+      },
+      "reason": "חסרים פרטים בטופס כדי להמשיך בתהליך.",
+      "result": {
+        "accepted": true
+      }
+    }
+  ]
+}
